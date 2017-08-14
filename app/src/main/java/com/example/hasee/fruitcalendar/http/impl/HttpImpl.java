@@ -1,7 +1,6 @@
 package com.example.hasee.fruitcalendar.http.impl;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.hasee.fruitcalendar.bean.BannerBean;
 import com.example.hasee.fruitcalendar.http.common.StringUtils;

@@ -18,7 +18,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
  */
 public class RetrofitClient {
 
-      private static String BASE_URL = "http://www.erdange.com";
 
 
 
@@ -49,7 +48,7 @@ public class RetrofitClient {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(RequsetUrlConstant.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(StringConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

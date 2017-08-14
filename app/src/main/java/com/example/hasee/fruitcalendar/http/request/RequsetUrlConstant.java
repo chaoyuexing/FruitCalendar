@@ -6,5 +6,9 @@ package com.example.hasee.fruitcalendar.http.request;
 
 public class RequsetUrlConstant {
 
+
+
+    public static final String BASE_URL = "http://www.erdange.com";
+
     public static final String BANNER_URL = "/activity";
 }
