@@ -18,4 +18,11 @@
         </activity>
     </application>
 
+
+
+
+
+    <!-- 权限声明-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

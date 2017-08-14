@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="ko_banner_selectd_orange">#fd3333</color>
+    <color name="ko_tiele_backgroeund_white">#fdfdfe</color>
+    <color name="ko_banner_normal_gray">#FF989898</color>
+    <color name="ko_main_central_text_black">#FF333333</color>
+    <color name="ko_main_item_mass_text_pale_powder">#FFFDBABA</color>
 </resources>
