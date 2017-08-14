@@ -87,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
         LoadImageUtils.LoadImage(mContext, bannerUrlList.get(position), view);
     }
 
+
+    /**
+     * 主页list的数据请求在这里
+     */
     public void initItemData() {
         mHttpImpl.goodsTypee(GOODS_TYPE_URL).subscribe(new Action1<ResponseData<ArrayList<GoodsTypeBean>>>() {
            @Override
