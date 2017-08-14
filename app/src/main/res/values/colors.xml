@@ -6,4 +6,5 @@
     <color name="ko_banner_normal_gray">#FF989898</color>
     <color name="ko_main_central_text_black">#FF333333</color>
     <color name="ko_main_item_mass_text_pale_powder">#FFFDBABA</color>
+    <color name="ko_item_division_gray">#FFF1F1F1</color>
 </resources>

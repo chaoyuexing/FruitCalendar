@@ -3,6 +3,8 @@ package com.example.hasee.fruitcalendar.http.impl;
 import android.content.Context;
 
 import com.example.hasee.fruitcalendar.bean.BannerBean;
+import com.example.hasee.fruitcalendar.bean.GoodsTypeBean;
+import com.example.hasee.fruitcalendar.bean.RecommendBean;
 import com.example.hasee.fruitcalendar.http.common.StringUtils;
 import com.example.hasee.fruitcalendar.http.model.ResponseData;
 import com.example.hasee.fruitcalendar.http.request.RetrofitClient;
@@ -42,6 +44,16 @@ public class HttpImpl {
      */
     public Observable<ResponseData<ArrayList<BannerBean>>> banner(String url) {
         return getIP(url, null, new TypeToken<ArrayList<BannerBean>>(){
+        }.getType()) ;
+    }
+
+    public Observable<ResponseData<ArrayList<GoodsTypeBean>>> goodsTypee(String url) {
+        return getIP(url, null, new TypeToken<ArrayList<GoodsTypeBean>>(){
+        }.getType()) ;
+    }
+
+    public Observable<ResponseData<ArrayList<RecommendBean>>> recommend(String url , String id) {
+        return getIP(url, id, new TypeToken<ArrayList<RecommendBean>>(){
         }.getType()) ;
     }
 
