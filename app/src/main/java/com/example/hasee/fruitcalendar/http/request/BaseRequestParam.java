@@ -16,11 +16,13 @@ public class BaseRequestParam {
 
 
     private HashMap<String, Object> baseParam;
+    public static final String PAGE_SIZE = "pagesize";
 
 
 
     public BaseRequestParam() {
         baseParam = new HashMap<>();
+        baseParam.put(PAGE_SIZE, "5");
 
     }
 
@@ -33,15 +35,6 @@ public class BaseRequestParam {
     }
 
 
-//    public BaseRequestParam setStartIndex(String mstartIndex) {
-//        baseParam.put(startIndex, mstartIndex);
-//        return this;
-//    }
-//
-//    public BaseRequestParam setPageSize(String mpageSize) {
-//        baseParam.put(pageSize, mpageSize);
-//        return this;
-//    }
 
 
     public BaseRequestParam put(String key, Object value) {

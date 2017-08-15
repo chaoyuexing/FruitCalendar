@@ -1,9 +1,10 @@
-package com.example.hasee.fruitcalendar;
+package com.example.hasee.fruitcalendar.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
+import com.example.hasee.fruitcalendar.R;
 import com.example.hasee.fruitcalendar.bean.MainItemBean;
 import com.example.hasee.fruitcalendar.util.LoadImageUtils;
 
@@ -39,5 +40,6 @@ public class GoodsTypeAdapter extends BaseRecyclerViewAdapter<MainItemBean> {
         LoadImageUtils.LoadImage(mContext,bean.getIcon(),ivCategory);
         ivFruit = helper.getImageView(R.id.main_item_iv_fruit);
         LoadImageUtils.LoadImage(mContext,bean.getImg(),ivFruit);
+
     }
 }

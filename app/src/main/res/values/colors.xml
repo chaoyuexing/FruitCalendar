@@ -7,4 +7,8 @@
     <color name="ko_main_central_text_black">#FF333333</color>
     <color name="ko_main_item_mass_text_pale_powder">#FFFDBABA</color>
     <color name="ko_item_division_gray">#FFF1F1F1</color>
+    <color name="ko_tab_white">#FFF7F7F7</color>
+    <color name="ko_caterory_selected_gray">#FFE1E1E1</color>
+    <color name="ko_caterory_gray">#FFF1F1F1</color>
+    <color name="ko_caterory_item_division_gray">#FFD7D7D7</color>
 </resources>

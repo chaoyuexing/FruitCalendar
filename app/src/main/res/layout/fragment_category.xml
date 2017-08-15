@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@color/ko_item_division_gray"
+        android:orientation="vertical">
+        <TextView
+            android:text="全部分类"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/ko_banner_normal_gray"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/category_type_recyler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+
+
+    <com.example.hasee.fruitcalendar.view.LoadMoreRecyclerView
+        android:id="@+id/category_list_recyler_view"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

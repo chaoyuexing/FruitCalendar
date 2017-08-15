@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.hasee.fruitcalendar.MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toobar"
@@ -22,70 +19,27 @@
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
 
-
-    <com.stx.xhb.xbanner.XBanner
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/mian_banner"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/banner_height"
-        android:layout_below="@id/main_toobar"
-        app:pointsPosition="CENTER"
-        app:AutoPlayTime="3000"
-        app:pointNormal="@drawable/banner_potin_normal"
-        app:pointSelect="@drawable/banner_potin_selected"/>
+        android:layout_height="0.1dp"
+        android:background="@color/ko_banner_normal_gray"/>
 
-    <LinearLayout
-        android:id="@+id/manin_central_lyt"
+    <FrameLayout
+        android:id="@+id/realtabcontent"
         android:layout_width="match_parent"
-        android:layout_height="98dp"
-        android:orientation="horizontal"
-        android:background="@color/ko_tiele_backgroeund_white"
-        android:layout_below="@id/mian_banner">
+        android:layout_height="0dip"
+        android:layout_weight="1" />
 
-        <LinearLayout
-            style="@style/MainCentralLinearLayout">
-            <ImageView
-                android:layout_height="48dp"
-                android:layout_width="48dp"
-                android:src="@mipmap/main_sale"/>
-
-            <TextView
-                style="@style/MainCentralTextView"
-                android:text="优惠活动"
-/>
-        </LinearLayout>
-
-    <LinearLayout
-        style="@style/MainCentralLinearLayout">
-        <ImageView
-            android:layout_height="48dp"
-            android:layout_width="48dp"
-            android:src="@mipmap/main_new"/>
-        <TextView
-            style="@style/MainCentralTextView"
-            android:text="积分兑换"/>
-/>
-    </LinearLayout>
-
-        <LinearLayout
-            style="@style/MainCentralLinearLayout">
-            <ImageView
-                android:layout_height="48dp"
-                android:layout_width="48dp"
-                android:src="@mipmap/main_recharge"/>
-            <TextView
-                style="@style/MainCentralTextView"
-                android:text="充值好礼"/>
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_recycler_view"
-        android:layout_below="@id/manin_central_lyt"
+    <android.support.v4.app.FragmentTabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         />
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+    </android.support.v4.app.FragmentTabHost>
+
+</LinearLayout>

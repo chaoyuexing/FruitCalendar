@@ -1,125 +1,44 @@
 package com.example.hasee.fruitcalendar;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.hasee.fruitcalendar.bean.BannerBean;
-import com.example.hasee.fruitcalendar.bean.GoodsTypeBean;
-import com.example.hasee.fruitcalendar.bean.MainItemBean;
-import com.example.hasee.fruitcalendar.bean.RecommendBean;
-import com.example.hasee.fruitcalendar.http.impl.HttpImpl;
-import com.example.hasee.fruitcalendar.http.model.ResponseData;
-import com.example.hasee.fruitcalendar.http.request.RequsetUrlConstant;
-import com.example.hasee.fruitcalendar.util.LoadImageUtils;
-import com.stx.xhb.xbanner.XBanner;
+import com.example.hasee.fruitcalendar.fragment.category.CategoryFragment;
+import com.example.hasee.fruitcalendar.fragment.home.HomePageFragment;
 
-import java.util.ArrayList;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import rx.functions.Action1;
+public class MainActivity extends AppCompatActivity {
 
-import static com.example.hasee.fruitcalendar.http.request.RequsetUrlConstant.GOODS_TYPE_URL;
-import static com.example.hasee.fruitcalendar.http.request.RequsetUrlConstant.RECOMMEND_URL;
-
-public class MainActivity extends AppCompatActivity implements XBanner.XBannerAdapter {
-
-    @Bind(R.id.main_toobar)
-    Toolbar mMainToobar;
-    @Bind(R.id.mian_banner)
-    XBanner mMianBanner;
-    @Bind(R.id.main_recycler_view)
-    RecyclerView mMainRecyclerView;
-    private HttpImpl mHttpImpl;
-    private Context mContext;
-    private ArrayList<String> bannerUrlList = new ArrayList<String>();
-    private ArrayList<MainItemBean> itemDataList = new ArrayList<MainItemBean>();
-    private ArrayList<GoodsTypeBean> tyepList = new ArrayList<GoodsTypeBean>();
-    private GoodsTypeAdapter mGoodsTypeAdapter;
-    private String icon;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        mHttpImpl = new HttpImpl(this);
-        mContext = this;
-        initBanner();
-        initItemData();
-        mGoodsTypeAdapter = new GoodsTypeAdapter(this, mMainRecyclerView);
-        mMainRecyclerView.setAdapter(mGoodsTypeAdapter);
+        FragmentTabHost mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+        mTabHost.getTabWidget().setBackgroundColor(getResources().getColor(R.color.ko_tab_white));
+        mTabHost.getTabWidget().setDividerDrawable(null);
+        mTabHost.addTab(mTabHost.newTabSpec("homepage").setIndicator(getTabItemView(R.drawable.tab_home_page_btn, "首页")),
+                HomePageFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("classify").setIndicator(getTabItemView(R.drawable.tab_classify_btn, "分类")),CategoryFragment.class, null);
+        mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = (int) getResources().getDimension(R.dimen.tab_height);
+
     }
 
-    /**
-     * banner 在这里
-     */
-    private void initBanner() {
-        mHttpImpl.banner(RequsetUrlConstant.BANNER_URL).subscribe(new Action1<ResponseData<ArrayList<BannerBean>>>() {
-            @Override
-            public void call(ResponseData<ArrayList<BannerBean>> data) {
-                Log.d(getClass().getSimpleName(), data.getData().get(0).getBannerurl());
-                for (int i = 0; i < data.getData().size(); i++) {
-                    bannerUrlList.add(data.getData().get(i).getBannerurl());
-                }
-                mMianBanner.setData(bannerUrlList, null);
-            }
-        });
-        mMianBanner.setmAdapter(this);
+
+    private View getTabItemView(int id, String title) {
+        View view = getLayoutInflater().inflate(R.layout.tab_item, null);
+        ImageView imageView = (ImageView) view.findViewById(R.id.tab_icon);
+        imageView.setImageResource(id);
+        TextView textView = (TextView) view.findViewById(R.id.tab_title);
+        textView.setText(title);
+        return view;
     }
 
 
-    /**
-     * banner 显示接口的实现
-     * @param banner
-     * @param model
-     * @param view
-     * @param position
-     */
-    @Override
-    public void loadBanner(XBanner banner, Object model, View view, int position) {
-        LoadImageUtils.LoadImage(mContext, bannerUrlList.get(position), view);
-    }
-
-
-    /**
-     * 主页list的数据请求在这里
-     */
-    public void initItemData() {
-        mHttpImpl.goodsTypee(GOODS_TYPE_URL).subscribe(new Action1<ResponseData<ArrayList<GoodsTypeBean>>>() {
-           @Override
-           public void call(ResponseData<ArrayList<GoodsTypeBean>> data) {
-               for (int i = 0; i < data.getData().size(); i++) {
-                   tyepList.add(data.getData().get(i));
-                   mHttpImpl.recommend(RECOMMEND_URL,data.getData().get(i).getId()+"").subscribe(new Action1<ResponseData<ArrayList<RecommendBean>>>() {
-                       @Override
-                       public void call(ResponseData<ArrayList<RecommendBean>> data) {
-                           MainItemBean itemBean = new MainItemBean();
-                           for (int i = 0; i <tyepList.size();i++) {
-                               if (data.getData().get(0).getFgoodstype().equals(tyepList.get(i).getId()+"")) {
-                                   icon = tyepList.get(i).getIcon();
-                               }
-                           }
-                           itemBean.setContext(data.getData().get(0).getGoodsBean().getContext());
-                           itemBean.setImg(data.getData().get(0).getGoodsBean().getImg());
-                           itemBean.setMass(data.getData().get(0).getGoodsBean().getMass());
-                           itemBean.setName(data.getData().get(0).getGoodsBean().getName());
-                           itemBean.setPrice(data.getData().get(0).getGoodsBean().getPrice());
-                           itemBean.setIcon(icon);
-                           itemDataList.add(itemBean);
-                           itemBean = null;
-                       }
-                   });
-               }
-               mGoodsTypeAdapter.setDatas(itemDataList);
-           }
-       });
-
-    }
 }

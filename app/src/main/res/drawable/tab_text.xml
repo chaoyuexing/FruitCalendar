@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@color/ko_banner_selectd_orange" android:state_selected="true"/>
+    <item android:color="@color/ko_main_central_text_black"/>
+</selector>
